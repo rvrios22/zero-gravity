@@ -1,8 +1,23 @@
 import React from 'react'
+import Star from '@mui/icons-material/Star';
+import { ratingInfo } from "../ratingInfo";
+import Stars from './Stars';
+
 
 function Rating() {
+  
   return (
-    <div>Rating</div>
+    <div className='ratings-container'>
+      {ratingInfo.map((rating, idx) => (
+        <div key={idx} className='rating'>
+          <h3>{rating.author}</h3>
+          <div className="star-container">
+            {rating.stars && <Stars />}
+          </div>
+          <p>{rating.review}</p>
+        </div>
+      ))}
+    </div>
   )
 }
 

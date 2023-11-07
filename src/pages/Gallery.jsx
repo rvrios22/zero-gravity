@@ -1,8 +1,12 @@
 import React from 'react'
+import GalleryUploader from '../components/GalleryUploader'
 
 function Gallery() {
   return (
-    <div>Gallery</div>
+    <div>
+      <h1>Gallery</h1>
+      <GalleryUploader />
+    </div>
   )
 }
 

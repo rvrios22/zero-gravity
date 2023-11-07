@@ -23,14 +23,20 @@ function Carousel() {
     fetchCarouselData();
   }, [])
 
-  console.log(carouselData);
-
   return (
-    <>
+    <main>
+      <h2>About Me</h2>
       {carouselData.map(data => (
-        <div>{data.desc}</div>
+        <div key={data.id} className="carousel-grid-container">
+          <div className="carousel-text-container">
+            <p>{data.desc}</p>
+          </div>
+          <div className="carousel-image-conatiner">
+            <img src={data.source} alt={data.alt} />
+          </div>
+        </div>
       ))}
-    </>
+    </main>
     );
 }
 

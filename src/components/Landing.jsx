@@ -24,7 +24,6 @@ function Landing() {
     fetchLandingImage();
   }, []);
 
-  console.log(landingImage)
   return (
     <div>
       <h1>Welcome to Zero Gravity Aerial Photography</h1>
