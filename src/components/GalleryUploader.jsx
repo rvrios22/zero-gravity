@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { storage, db } from "../config";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
@@ -8,16 +8,34 @@ function GalleryUploader() {
   const [percent, setPercent] = useState(0);
   const [imageURL, setImageURL] = useState("");
   const [imageName, setImageName] = useState("");
-  const [isImageURLEmpty, setIsImageURLEmpty] = useState("");
+  const [isImageURLEmpty, setIsImageURLEmpty] = useState(true);
+  const imageInputRef = useRef(null);
+
+  const handleImageInputReset = () => {
+    if (imageInputRef.current) {
+      imageInputRef.current.value = "";
+      imageInputRef.current.type = "text";
+      imageInputRef.current.type = "file";
+    }
+  };
 
   const addImageToDatabase = async () => {
+    if (!imageName || !imageURL) return;
     try {
+      console.log("database function called");
       await addDoc(collection(db, "galleryImages"), {
         alt: imageName,
         source: imageURL,
       });
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsImageURLEmpty(true);
+      handleImageInputReset();
+      setImageFile("");
+      setPercent(0);
+      setImageURL("");
+      setImageName("");
     }
   };
 
@@ -26,8 +44,8 @@ function GalleryUploader() {
   };
 
   const handleUpload = () => {
-    if (!imageFile) alert("Please choose a file to upload");
-    if (!imageName) alert("Please add a name for your image");
+    if (!imageFile) return alert("Please choose a file to upload");
+    if (!imageName) return alert("Please add a name for your image");
     const imageToBeUploadedRef = ref(
       storage,
       `galleryImages/${imageFile.name}`
@@ -45,17 +63,19 @@ function GalleryUploader() {
       (err) => console.error(err),
       () => {
         getDownloadURL(uploadImage.snapshot.ref).then((url) => {
-          console.log(url);
           setImageURL(url);
+          //   need this line to be false to wait for imageURL state to update
           if (!imageURL) {
-            setIsImageURLEmpty(true);
+            setIsImageURLEmpty(false);
           }
         });
       }
     );
   };
 
-  if (isImageURLEmpty) {
+  if (isImageURLEmpty == false) {
+    setIsImageURLEmpty(true);
+    console.log("if statement called");
     addImageToDatabase();
   }
 
@@ -72,6 +92,7 @@ function GalleryUploader() {
         name="img"
         accept="image/jpg"
         onChange={handleImageInputChange}
+        ref={imageInputRef}
       />
       <button type="submit" onClick={handleUpload}>
         Upload
