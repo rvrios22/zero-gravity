@@ -94,9 +94,8 @@ function GalleryUploader() {
         onChange={handleImageInputChange}
         ref={imageInputRef}
       />
-      <button type="submit" onClick={handleUpload}>
-        Upload
-      </button>
+      <input type="submit" onClick={handleUpload} />
+
       {percent && <p>{percent}% Uploaded</p>}
       <label htmlFor="name">Image Name: </label>
       <input
