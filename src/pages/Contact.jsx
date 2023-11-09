@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import ContactForm from "../components/ContactForm";
+import GetInTouch from "../components/GetInTouch";
 
 function Contact() {
   return (
-    <div>Contact</div>
-  )
+    <div>
+      <ContactForm />
+      <GetInTouch />
+    </div>
+  );
 }
 
-export default Contact
+export default Contact;
