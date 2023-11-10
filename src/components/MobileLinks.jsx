@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function MobileLinks() {
+function MobileLinks({ isMobileIconClicked }) {
   return (
-    <div className="mobile-links">
+    <div
+      className={
+        isMobileIconClicked ? "show-mobile-links mobile-links" : "mobile-links"
+      }
+    >
       <Link to={"/"}>Home</Link>
       <Link to={"/gallery"}>Gallery</Link>
       <Link to={"/contact"}>Contact</Link>

@@ -88,6 +88,9 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
+
+/* BEGIN CUSTOM CSS */
+
 button {
   all: unset;
 }
@@ -103,8 +106,11 @@ a:visited {
 a:hover {
   cursor: pointer;
 }
+.app-wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
 
-/* BEGIN CUSTOM CSS */
 header {
   position: sticky;
   top: 0;
@@ -112,19 +118,23 @@ header {
 
 .mobile-links {
   height: 33vh;
-  background-color: rgba(218, 218, 218, 0.9);
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
   border: 1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  
+  position: absolute;
+  top: -250px;
+  transition: top 250ms linear;
 }
 
-.app-wrapper {
-  width: 90%;
-  margin: 0 auto;
+.show-mobile-links {
+  top: 0;
+  transition: top 150ms linear;
 }
+
 
 .landing-header {
   text-align: center;
