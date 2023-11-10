@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../config";
 import { doc, getDoc } from "firebase/firestore";
+import '../index.css'
 
 function Landing() {
   const [landingImage, setLandingImage] = useState();
@@ -25,9 +26,13 @@ function Landing() {
   }, []);
 
   return (
-    <div>
-      <h1>Welcome to Zero Gravity Aerial Photography</h1>
-      <img src={isLandingImageLoaded ? landingImage.source : ''} alt={isLandingImageLoaded ? landingImage.alt : ''} />
+    <div className="landing-container">
+      <h1 className="landing-header">Welcome to Zero Gravity Aerial Photography</h1>
+      <img
+        src={isLandingImageLoaded ? landingImage.source : ""}
+        alt={isLandingImageLoaded ? landingImage.alt : ""}
+        className="landing-image"
+      />
     </div>
   );
 }

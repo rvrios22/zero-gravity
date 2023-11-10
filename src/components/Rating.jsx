@@ -1,5 +1,4 @@
 import React from 'react'
-import Star from '@mui/icons-material/Star';
 import { ratingInfo } from "../ratingInfo";
 import Stars from './Stars';
 
@@ -14,7 +13,7 @@ function Rating() {
           <div className="star-container">
             {rating.stars && <Stars />}
           </div>
-          <p>{rating.review}</p>
+          <p>"{rating.review}"</p>
         </div>
       ))}
     </div>

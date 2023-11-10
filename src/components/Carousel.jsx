@@ -21,23 +21,23 @@ function Carousel() {
 
   useEffect(() => {
     fetchCarouselData();
-  }, [])
+  }, []);
 
   return (
     <main>
-      <h2>About Me</h2>
-      {carouselData.map(data => (
+      <h2 className="carousel-header">About Me</h2>
+      {carouselData.map((data) => (
         <div key={data.id} className="carousel-grid-container">
-          <div className="carousel-text-container">
-            <p>{data.desc}</p>
-          </div>
           <div className="carousel-image-conatiner">
             <img src={data.source} alt={data.alt} />
+          </div>
+          <div className="carousel-text-container">
+            <p>{data.desc}</p>
           </div>
         </div>
       ))}
     </main>
-    );
+  );
 }
 
 export default Carousel;
