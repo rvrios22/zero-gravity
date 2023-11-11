@@ -1,0 +1,45 @@
+.contact-header {
+  text-align: center;
+}
+
+form button {
+  all: unset;
+  margin-top: 1em;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+label,
+input,
+textarea,
+form button {
+  display: block;
+  text-align: center;
+  margin: .5em auto;
+  width: 100%;
+}
+
+input {
+  height: 2.25em;
+}
+
+.communcation-container p {
+  margin: 1em auto;
+  font-size: 1.05em;
+}
+
+.contact-button:hover {
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}
+
+.icons-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+icon:hover {
+  cursor: pointer;
+}

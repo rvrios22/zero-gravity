@@ -1,6 +1,5 @@
 import React from "react";
 import StarIcon from "@mui/icons-material/Star";
-import { ratingInfo } from "../ratingInfo";
 
 function Stars() {
   return (

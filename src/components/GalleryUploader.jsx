@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { storage, db } from "../config";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
+import "../css/gallery.css";
 
 function GalleryUploader() {
   const [imageFile, setImageFile] = useState("");

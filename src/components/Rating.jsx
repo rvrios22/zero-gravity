@@ -1,23 +1,20 @@
-import React from 'react'
+import React from "react";
 import { ratingInfo } from "../ratingInfo";
-import Stars from './Stars';
-
+import Stars from "./Stars";
+import "../css/indexPage.css";
 
 function Rating() {
-  
   return (
-    <div className='ratings-container'>
+    <div className="ratings-container">
       {ratingInfo.map((rating, idx) => (
-        <div key={idx} className='rating'>
+        <div key={idx} className="rating">
           <h3>{rating.author}</h3>
-          <div className="star-container">
-            {rating.stars && <Stars />}
-          </div>
+          <div className="star-container">{rating.stars && <Stars />}</div>
           <p>"{rating.review}"</p>
         </div>
       ))}
     </div>
-  )
+  );
 }
 
-export default Rating
+export default Rating;

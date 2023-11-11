@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
+import "../css/contact.css";
 
 function ContactForm() {
   const form = useRef();
@@ -19,8 +20,8 @@ function ContactForm() {
   const toastError = Swal.mixin({
     toast: true,
     position: "center",
-    showConfirmButton: true
-  })
+    showConfirmButton: true,
+  });
 
   const sendEmail = (e) => {
     e.preventDefault();

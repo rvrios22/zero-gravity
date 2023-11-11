@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../config";
 import { collection, getDocs, query } from "firebase/firestore";
+import "../css/indexPage.css";
 
 function Carousel() {
   const [carouselData, setCarouselData] = useState([]);

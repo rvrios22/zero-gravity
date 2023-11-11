@@ -1,0 +1,33 @@
+  header {
+    position: sticky;
+    top: 0;
+    height: auto;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid black;
+    padding-top: 6px;
+  }
+  
+  .mobile-nav-icon {
+    position: relative;
+    left: 90%;
+  }
+  
+  .mobile-links {
+    height: 33vh;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    top: -250px;
+    transition: top 250ms linear;
+  }
+  
+  .show-mobile-links {
+    top: 0;
+    transition: top 150ms linear;
+  }

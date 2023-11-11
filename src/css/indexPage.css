@@ -1,0 +1,38 @@
+.landing-header {
+    text-align: center;
+    margin-bottom: .5em;
+  }
+  
+  .landing-image {
+    border-radius: 10px;
+  }
+  
+  .carousel-header {
+    text-align: center;
+    margin: .5em auto;
+  }
+  
+  .carousel-image-conatiner img {
+    border-radius: 10px;
+  }
+  
+  .carousel-text-container p {
+    text-align: center;
+    margin: .5em auto;
+  }
+  
+  .ratings-container h3 {
+    margin-left: 5px;
+  }
+  
+  .star-container {
+    display: flex;
+    margin-bottom: .5em;
+  
+  }
+  
+  .ratings-container p {
+    margin: 0 auto;
+    font-style: italic;
+    font-weight: 500;
+  }

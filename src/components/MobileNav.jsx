@@ -3,6 +3,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import MobileLinks from "./MobileLinks";
 import { useLocation } from "react-router-dom";
+import "../css/header.css";
 
 function MobileNav() {
   const [isMobileIconClicked, setIsMobileIconClicked] = useState(false);
@@ -13,7 +14,7 @@ function MobileNav() {
 
   useEffect(() => {
     setIsMobileIconClicked(false);
-  }, [location])
+  }, [location]);
   return (
     <>
       {<MobileLinks isMobileIconClicked={isMobileIconClicked} />}

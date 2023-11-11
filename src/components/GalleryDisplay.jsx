@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../config";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import "../css/gallery.css";
 
 function GalleryDisplay() {
   const [galleryData, setGalleryData] = useState([]);
