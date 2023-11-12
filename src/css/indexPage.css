@@ -1,38 +1,61 @@
 .landing-header {
-    text-align: center;
-    margin-bottom: .5em;
-  }
-  
-  .landing-image {
-    border-radius: 10px;
-  }
-  
-  .carousel-header {
-    text-align: center;
-    margin: .5em auto;
-  }
-  
-  .carousel-image-conatiner img {
-    border-radius: 10px;
-  }
-  
-  .carousel-text-container p {
-    text-align: center;
-    margin: .5em auto;
-  }
-  
-  .ratings-container h3 {
-    margin-left: 5px;
-  }
-  
-  .star-container {
-    display: flex;
-    margin-bottom: .5em;
-  
-  }
-  
-  .ratings-container p {
-    margin: 0 auto;
-    font-style: italic;
-    font-weight: 500;
-  }
+  text-align: center;
+  margin-bottom: .5em;
+}
+
+.landing-image {
+  border-radius: 10px;
+}
+
+.carousel-header {
+  text-align: center;
+  margin: .5em auto;
+}
+
+.carousel-flex-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+}
+
+.carousel-image {
+  border-radius: 10px;
+}
+
+.carousel-text {
+  margin: .5em auto;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.arrow-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.ratings-container h3 {
+  margin-left: 5px;
+}
+
+.star-container {
+  display: flex;
+  margin-bottom: .5em;
+
+}
+
+.ratings-container p {
+  margin: 0 auto;
+  font-style: italic;
+  font-weight: 500;
+}
