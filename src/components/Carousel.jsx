@@ -6,11 +6,11 @@ import "../css/indexPage.css";
 function Carousel({ carouselData }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [carouselDataCache, setCarouselDataCache] = useState({});
-  const [imageSources, setImagesSources] = useState([]);
 
+  const imageSources = carouselData.map((obj) => obj.source);
 
   useEffect(() => {
-    carouselData.forEach((src) => {
+    imageSources.forEach((src) => {
       const img = new Image();
       img.src = src;
       setCarouselDataCache((prevCache) => ({ ...prevCache, [src]: img }));
@@ -34,7 +34,6 @@ function Carousel({ carouselData }) {
     );
   };
 
-  console.log(carouselDataCache)
   return (
     <main>
       <h2 className="carousel-header">About Me</h2>
