@@ -23,7 +23,6 @@ function GalleryUploader() {
   const addImageToDatabase = async () => {
     if (!imageName || !imageURL) return;
     try {
-      console.log("database function called");
       await addDoc(collection(db, "galleryImages"), {
         alt: imageName,
         source: imageURL,
@@ -76,7 +75,6 @@ function GalleryUploader() {
 
   if (isImageURLEmpty == false) {
     setIsImageURLEmpty(true);
-    console.log("if statement called");
     addImageToDatabase();
   }
 
@@ -91,7 +89,7 @@ function GalleryUploader() {
         type="file"
         id="img"
         name="img"
-        accept="image/jpg"
+        accept="image/*"
         onChange={handleImageInputChange}
         ref={imageInputRef}
       />

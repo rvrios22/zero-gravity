@@ -1,0 +1,9 @@
+.gallery-header {
+    text-align: center;
+    margin-bottom: .5em;
+}
+
+.gallery-image {
+    border-radius: 10px;
+    margin-bottom: 1em;
+}

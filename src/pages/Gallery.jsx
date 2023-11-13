@@ -5,8 +5,8 @@ import GalleryDisplay from "../components/GalleryDisplay";
 function Gallery() {
   return (
     <div>
-      <h1>Gallery</h1>
-      <GalleryUploader />
+      <h1 className="gallery-header">Gallery</h1>
+      {/* <GalleryUploader /> */}
       <GalleryDisplay />
     </div>
   );

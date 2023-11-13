@@ -8,7 +8,7 @@ function GalleryDisplay() {
 
   const fetchGalleryData = async () => {
     const galleryDataRef = collection(db, "galleryImages");
-    const galleryDataQuery = query(galleryDataRef, orderBy('alt', 'asc'));
+    const galleryDataQuery = query(galleryDataRef, orderBy("alt", "asc"));
     try {
       const galleryDataSnapshot = await getDocs(galleryDataQuery);
       const filteredGalleryData = galleryDataSnapshot.docs.map((doc) => ({
@@ -27,11 +27,13 @@ function GalleryDisplay() {
 
   return (
     <main>
-      {galleryData.map((data) => (
-        <div key={data.id}>
-          <img src={data.source} alt={data.alt} />
-        </div>
-      ))}
+      <div className="gallery-grid-container">
+        {galleryData.map((data) => (
+          <div key={data.id}>
+            <img src={data.source} alt={data.alt} className="gallery-image" />
+          </div>
+        ))}
+      </div>
     </main>
   );
 }
