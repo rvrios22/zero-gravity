@@ -34,6 +34,13 @@ function Carousel({ carouselData }) {
     );
   };
 
+  const getCurrentImage = () => {
+    const currentImageSrc = imageSources[currentSlide];
+    return carouselDataCache[currentImageSrc]
+      ? carouselDataCache[currentImageSrc].src
+      : "";
+  };
+  console.log(carouselDataCache)
   return (
     <main>
       <h2 className="carousel-header">About Me</h2>
@@ -46,7 +53,7 @@ function Carousel({ carouselData }) {
             {idx === currentSlide && (
               <img
                 className="carousel-image"
-                src={data.source}
+                src={getCurrentImage()}
                 alt={data.alt}
               />
             )}

@@ -59,3 +59,17 @@
   font-style: italic;
   font-weight: 500;
 }
+
+@media (min-width: 900px) {
+  .ratings-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2em;
+  }
+
+  .rating p {
+    width: 75%;
+    float: inline-start;
+  }
+
+}

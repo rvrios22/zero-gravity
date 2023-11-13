@@ -91,6 +91,7 @@ textarea:not([rows]) {
 button {
   all: unset;
 }
+
 a {
   text-decoration: none;
   color: black;
@@ -103,8 +104,14 @@ a:visited {
 a:hover {
   cursor: pointer;
 }
+
 .app-wrapper {
   width: 90%;
+  max-width: 2000px;
+  height: calc(100vh - 40px);
   margin: 0 auto;
-  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: clamp(16px, 1.5vw, 20px);
 }

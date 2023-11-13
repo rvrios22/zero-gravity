@@ -3,16 +3,19 @@
     top: 0;
     height: auto;
     width: 100%;
+    max-width: 2000px;
+    margin: 0 auto;
     background-color: rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid black;
     padding-top: 6px;
+    font-size: clamp(16px, 1.5vw, 20px);
   }
-  
+
   .mobile-nav-icon {
     position: relative;
     left: 90%;
   }
-  
+
   .mobile-links {
     height: 33vh;
     width: 100%;
@@ -26,8 +29,15 @@
     top: -250px;
     transition: top 250ms linear;
   }
-  
+
   .show-mobile-links {
     top: 0;
     transition: top 150ms linear;
+  }
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1em;
   }

@@ -4,7 +4,6 @@ import "../css/footer.css";
 function Footer() {
   return (
     <>
-      <hr />
       <footer className="footer">
         <p>
           zerogravityaerialphotography.com was developed and is maintained by{" "}

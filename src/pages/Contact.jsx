@@ -6,8 +6,10 @@ function Contact() {
   return (
     <div>
       <h1 className="contact-header">Get In Touch</h1>
-      <ContactForm />
-      <GetInTouch />
+      <div className="contact-grid-container">
+        <ContactForm />
+        <GetInTouch />
+      </div>
     </div>
   );
 }

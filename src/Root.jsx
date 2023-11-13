@@ -5,12 +5,14 @@ import Footer from "./components/Footer";
 
 function Root() {
   return (
-    <div className="app-wrapper">
-        <Header />
+    <>
+      <Header />
+      <div className="app-wrapper">
         <Outlet />
         <Footer />
-    </div>
-  )
+      </div>
+    </>
+  );
 }
 
 export default Root;

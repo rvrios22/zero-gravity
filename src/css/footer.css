@@ -1,5 +1,11 @@
+footer {
+  max-width: 2000px;
+  border-top: 1px solid rgb(180, 180, 180);
+}
+
 footer p {
-    margin: 0 auto 8px;
+    margin: 0 auto;
     font-size: 10px;
+    color: rgb(180, 180, 180);
   }
   

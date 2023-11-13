@@ -17,6 +17,7 @@ form button {
   text-align: center;
   margin: .5em auto;
   width: 100%;
+  resize: none;
 }
 
 input {
@@ -42,4 +43,30 @@ input {
 
 icon:hover {
   cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .contact-grid-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 5em;
+  }
+
+  label {
+    margin: 1em auto;
+  }
+
+  textarea {
+    margin-bottom: 2em;
+  }
+
+  .communcation-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .icons-container {
+    justify-content: space-between;
+  }
 }
