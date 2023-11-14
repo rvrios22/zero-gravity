@@ -1,13 +1,36 @@
 import React, { useEffect, useState } from "react";
+import { db } from "../config";
+import { collection, getDocs, query } from "firebase/firestore";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "../css/indexPage.css";
 
-function Carousel({ carouselData }) {
+function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [carouselDataCache, setCarouselDataCache] = useState({});
+  const [carouselData, setCarouselData] = useState([]);
 
   const imageSources = carouselData.map((obj) => obj.source);
+  console.log(carouselData)
+
+  const fetchCarouselData = async () => {
+    const carouselDataQuery = query(collection(db, "carouselImages"));
+    try {
+      console.log('data fetched')
+      const carouselDataSnapshot = await getDocs(carouselDataQuery);
+      const filteredCarouselData = carouselDataSnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setCarouselData(filteredCarouselData);
+    } catch (err) {
+      console.error("error: ", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchCarouselData();
+  }, []);
 
   useEffect(() => {
     imageSources.forEach((src) => {
@@ -40,11 +63,10 @@ function Carousel({ carouselData }) {
       ? carouselDataCache[currentImageSrc].src
       : "";
   };
-  console.log(carouselDataCache)
   return (
     <main>
       <h2 className="carousel-header">About Me</h2>
-      <div className="carousel-flex-container">
+      <div className="carousel-grid-container">
         {carouselData.map((data, idx) => (
           <div
             key={data.id}
@@ -53,7 +75,7 @@ function Carousel({ carouselData }) {
             {idx === currentSlide && (
               <img
                 className="carousel-image"
-                src={getCurrentImage()}
+                src={data.source}
                 alt={data.alt}
               />
             )}

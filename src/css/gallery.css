@@ -4,6 +4,38 @@
 }
 
 .gallery-image {
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
     margin-bottom: 1em;
+    object-fit: cover;
+    transition: transform 150ms linear;
+}
+
+.gallery-image:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: transform 200ms linear;
+}
+
+.gallery-grid-container:last-child {
+    margin-bottom: 1em;
+}
+
+@media (min-width: 500px) {
+    .gallery-grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2em;
+        margin: 0;
+    }
+
+}
+@media (min-width: 1000px) {
+    .gallery-grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2em;
+        margin: 0;
+    }
 }

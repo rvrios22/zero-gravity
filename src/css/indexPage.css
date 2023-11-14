@@ -12,21 +12,12 @@
   margin: .5em auto;
 }
 
-.carousel-flex-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .slide {
-  opacity: 0;
-  transition-duration: 1s ease;
+  display: none;
 }
 
 .slide.active {
-  opacity: 1;
-  transition-duration: 1s;
+  display: block;
 }
 
 .carousel-image {
