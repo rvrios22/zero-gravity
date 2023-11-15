@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { db } from "../config";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import DeletePhoto from "./DeletePhoto";
+import {
+  LazyLoadImage,
+  trackWindowScroll,
+} from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "../css/gallery.css";
 
 function GalleryDisplay() {
@@ -31,12 +36,14 @@ function GalleryDisplay() {
       <div className="gallery-grid-container">
         {galleryData.map((data) => (
           <div key={data.id}>
-            <img src={data.source} alt={data.alt} className="gallery-image" loading="lazy"/> 
-            {/* <LazyLoadImage 
+            <DeletePhoto photoId={data.id} photoName={data.name}/>
+            <LazyLoadImage
               alt={data.alt}
               src={data.source}
+              className="gallery-image"
               placeholderSrc="./loaderImage.jpg"
-            /> */}
+              effect="blur"
+            />
           </div>
         ))}
       </div>
@@ -44,4 +51,4 @@ function GalleryDisplay() {
   );
 }
 
-export default GalleryDisplay;
+export default trackWindowScroll(GalleryDisplay);

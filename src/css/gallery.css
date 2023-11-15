@@ -11,6 +11,9 @@
     object-fit: cover;
     transition: transform 150ms linear;
 }
+.gallery-image-placeholder {
+    height: auto;
+}
 
 .gallery-image:hover {
     transform: scale(1.05);

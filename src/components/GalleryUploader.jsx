@@ -8,7 +8,7 @@ function GalleryUploader() {
   const [imageFile, setImageFile] = useState("");
   const [percent, setPercent] = useState(0);
   const [imageURL, setImageURL] = useState("");
-  const [imageName, setImageName] = useState("");
+  const [imageAlt, setImageAlt] = useState("");
   const [isImageURLEmpty, setIsImageURLEmpty] = useState(true);
   const imageInputRef = useRef(null);
 
@@ -21,11 +21,12 @@ function GalleryUploader() {
   };
 
   const addImageToDatabase = async () => {
-    if (!imageName || !imageURL) return;
+    if (!imageAlt || !imageURL) return;
     try {
       await addDoc(collection(db, "galleryImages"), {
-        alt: imageName,
+        alt: imageAlt,
         source: imageURL,
+        name: imageFile.name,
       });
     } catch (err) {
       console.error(err);
@@ -35,7 +36,7 @@ function GalleryUploader() {
       setImageFile("");
       setPercent(0);
       setImageURL("");
-      setImageName("");
+      setImageAlt("");
     }
   };
 
@@ -45,7 +46,7 @@ function GalleryUploader() {
 
   const handleUpload = () => {
     if (!imageFile) return alert("Please choose a file to upload");
-    if (!imageName) return alert("Please add a name for your image");
+    if (!imageAlt) return alert("Please add a name for your image");
     const imageToBeUploadedRef = ref(
       storage,
       `galleryImages/${imageFile.name}`
@@ -78,8 +79,8 @@ function GalleryUploader() {
     addImageToDatabase();
   }
 
-  const handleImageNameChange = (event) => {
-    setImageName(event.target.value);
+  const handleImageAltChange = (event) => {
+    setImageAlt(event.target.value);
   };
 
   return (
@@ -101,8 +102,8 @@ function GalleryUploader() {
         type="text"
         id="name"
         name="name"
-        onChange={handleImageNameChange}
-        value={imageName}
+        onChange={handleImageAltChange}
+        value={imageAlt}
       />
     </div>
   );

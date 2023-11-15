@@ -6,7 +6,7 @@ function Gallery() {
   return (
     <div>
       <h1 className="gallery-header">Gallery</h1>
-      {/* <GalleryUploader /> */}
+      <GalleryUploader />
       <GalleryDisplay />
     </div>
   );
