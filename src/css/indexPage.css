@@ -4,12 +4,17 @@
 }
 
 .landing-image {
+  width: 100%;
+  max-height: 552px;
   border-radius: 10px;
+  object-fit: cover;
+  margin: 0 auto;
 }
 
 .carousel-header {
   text-align: center;
-  margin: .5em auto;
+  margin: 1em auto;
+
 }
 
 .slide {
@@ -46,9 +51,27 @@
 }
 
 .ratings-container p {
-  margin: 0 auto;
+  margin: 0 auto 1em;
   font-style: italic;
   font-weight: 500;
+}
+
+@media (min-width: 810px) {
+  .slide.active {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1.5em;
+    background-color: aliceblue;
+  }
+
+  .carousel-text {
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  .carousel-image {
+    margin-bottom: 1em;
+  }
 }
 
 @media (min-width: 900px) {
@@ -63,4 +86,18 @@
     float: inline-start;
   }
 
+}
+
+@media (min-width: 1200px) {
+  .slide.active {
+    gap: 3em;
+    grid-template-columns: 1fr 1fr;
+  }
+  .carousel-image {
+    margin-bottom: 1.5em;
+  }
+
+  .carousel-text {
+    align-self: center;
+  }
 }

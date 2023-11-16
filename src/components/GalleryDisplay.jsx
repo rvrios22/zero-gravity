@@ -9,7 +9,7 @@ import {
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "../css/gallery.css";
 
-function GalleryDisplay() {
+function GalleryDisplay({ didImageUpload, setDidImageUpload }) {
   const [galleryData, setGalleryData] = useState([]);
 
   const fetchGalleryData = async () => {
@@ -31,12 +31,16 @@ function GalleryDisplay() {
     fetchGalleryData();
   }, []);
 
+  if (didImageUpload) {
+    fetchGalleryData();
+    setDidImageUpload(false);
+  }
   return (
     <main>
       <div className="gallery-grid-container">
         {galleryData.map((data) => (
           <div key={data.id}>
-            <DeletePhoto photoId={data.id} photoName={data.name}/>
+            <DeletePhoto photoId={data.id} photoName={data.name} />
             <LazyLoadImage
               alt={data.alt}
               src={data.source}

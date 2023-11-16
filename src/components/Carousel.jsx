@@ -66,7 +66,6 @@ function Carousel() {
   return (
     <main>
       <h2 className="carousel-header">About Me</h2>
-      <div className="carousel-grid-container">
         {carouselData.map((data, idx) => (
           <div
             key={data.id}
@@ -84,7 +83,6 @@ function Carousel() {
             )}
           </div>
         ))}
-      </div>
       <div className="arrow-container">
         <button onClick={prevSlide}>
           <KeyboardArrowLeftIcon />

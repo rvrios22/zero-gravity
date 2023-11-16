@@ -4,7 +4,7 @@ import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import "../css/gallery.css";
 
-function GalleryUploader() {
+function GalleryUploader({ didImageUpload, setDidImageUpload }) {
   const [imageFile, setImageFile] = useState("");
   const [percent, setPercent] = useState(0);
   const [imageURL, setImageURL] = useState("");
@@ -77,6 +77,7 @@ function GalleryUploader() {
   if (isImageURLEmpty == false) {
     setIsImageURLEmpty(true);
     addImageToDatabase();
+    setDidImageUpload(true);
   }
 
   const handleImageAltChange = (event) => {
@@ -94,8 +95,6 @@ function GalleryUploader() {
         onChange={handleImageInputChange}
         ref={imageInputRef}
       />
-      <input type="submit" onClick={handleUpload} />
-
       {percent && <p>{percent}% Uploaded</p>}
       <label htmlFor="name">Image Name: </label>
       <input
@@ -105,6 +104,7 @@ function GalleryUploader() {
         onChange={handleImageAltChange}
         value={imageAlt}
       />
+      <input type="submit" onClick={handleUpload} />
     </div>
   );
 }
