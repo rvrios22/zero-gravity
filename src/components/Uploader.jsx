@@ -2,9 +2,8 @@ import React, { useState, useRef } from "react";
 import { storage, db } from "../config";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
-import "../css/gallery.css";
 
-function GalleryUploader({ setDidImageUpload }) {
+function Uploader({ setDidImageUpload, collectionName }) {
   const [imageFile, setImageFile] = useState("");
   const [percent, setPercent] = useState(0);
   const [imageURL, setImageURL] = useState("");
@@ -23,7 +22,7 @@ function GalleryUploader({ setDidImageUpload }) {
   const addImageToDatabase = async () => {
     if (!imageAlt || !imageURL) return;
     try {
-      await addDoc(collection(db, "galleryImages"), {
+      await addDoc(collection(db, collectionName), {
         alt: imageAlt,
         source: imageURL,
         name: imageFile.name,
@@ -49,7 +48,7 @@ function GalleryUploader({ setDidImageUpload }) {
     if (!imageAlt) return alert("Please add a name for your image");
     const imageToBeUploadedRef = ref(
       storage,
-      `galleryImages/${imageFile.name}`
+      `${collectionName}/${imageFile.name}`
     );
     const uploadImage = uploadBytesResumable(imageToBeUploadedRef, imageFile);
 
@@ -83,10 +82,8 @@ function GalleryUploader({ setDidImageUpload }) {
   const handleImageAltChange = (event) => {
     setImageAlt(event.target.value);
   };
-
   return (
     <div>
-      <label htmlFor="img">Upload An Image: </label>
       <input
         type="file"
         id="img"
@@ -109,4 +106,4 @@ function GalleryUploader({ setDidImageUpload }) {
   );
 }
 
-export default GalleryUploader;
+export default Uploader;

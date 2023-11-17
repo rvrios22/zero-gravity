@@ -40,7 +40,7 @@ function GalleryDisplay({ didImageUpload, setDidImageUpload }) {
       <div className="gallery-grid-container">
         {galleryData.map((data) => (
           <div key={data.id}>
-            <DeletePhoto photoId={data.id} photoName={data.name} />
+            <DeletePhoto collection='galleryImages' photoId={data.id} photoName={data.name} />
             <LazyLoadImage
               alt={data.alt}
               src={data.source}

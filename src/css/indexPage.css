@@ -13,8 +13,8 @@
 
 .carousel-header {
   text-align: center;
-  margin: 1em auto;
-
+  margin: .75em auto;
+font-size: 1.85em;
 }
 
 .slide {
@@ -61,7 +61,6 @@
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 1.5em;
-    background-color: aliceblue;
   }
 
   .carousel-text {
