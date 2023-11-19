@@ -12,6 +12,16 @@ function Landing() {
 
   const fetchLandingImage = async () => {
     const landingImageRef = collection(db, "landingImage");
+    try {
+      const landingDataSnapshot = await getDocs(landingImage);
+      const filteredLandingData = landingDataSnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setLandingImage(filteredLandingData);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
