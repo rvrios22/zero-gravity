@@ -11,12 +11,10 @@ function Carousel() {
   const [carouselData, setCarouselData] = useState([]);
 
   const imageSources = carouselData.map((obj) => obj.source);
-  console.log(carouselData)
 
   const fetchCarouselData = async () => {
     const carouselDataQuery = query(collection(db, "carouselImages"));
     try {
-      console.log('data fetched')
       const carouselDataSnapshot = await getDocs(carouselDataQuery);
       const filteredCarouselData = carouselDataSnapshot.docs.map((doc) => ({
         ...doc.data(),
