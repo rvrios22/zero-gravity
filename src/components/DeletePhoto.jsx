@@ -7,6 +7,7 @@ function DeletePhoto({
   photoId,
   photoName,
   setIsImageDeleted,
+  isImageDeleted
 }) {
   const handleDelete = async () => {
     const imageToBeDeletedRef = ref(storage, `${collectionName}/${photoName}`);
@@ -14,7 +15,7 @@ function DeletePhoto({
     try {
       await deleteDoc(doc(db, collectionName, photoId));
       await deleteObject(imageToBeDeletedRef);
-      setIsImageDeleted(true);
+      setIsImageDeleted(!isImageDeleted);
     } catch (err) {
       console.error("error", err);
     }

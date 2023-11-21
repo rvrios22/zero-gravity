@@ -29,7 +29,6 @@ function Landing() {
     fetchLandingImage();
   }, [didImageUpload, isImageDeleted]);
 
-
   return (
     <div className="landing-container">
       <h1 className="landing-header">
@@ -41,6 +40,7 @@ function Landing() {
             collectionName="landingImage"
             photoId={image.id}
             photoName={image.name}
+            isImageDeleted={isImageDeleted}
             setIsImageDeleted={setIsImageDeleted}
           />
           <img src={image.source} alt={image.alt} className="landing-image" />
@@ -48,6 +48,7 @@ function Landing() {
       ))}
       <Uploader
         setDidImageUpload={setDidImageUpload}
+        isImageDeleted={isImageDeleted}
         collectionName="landingImage"
         setIsImageDeleted={setIsImageDeleted}
       />

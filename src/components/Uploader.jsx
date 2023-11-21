@@ -3,7 +3,7 @@ import { storage, db } from "../config";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 
-function Uploader({ setDidImageUpload, collectionName, setIsImageDeleted }) {
+function Uploader({ setDidImageUpload, collectionName, setIsImageDeleted, isImageDeleted }) {
   const [imageFile, setImageFile] = useState("");
   const [percent, setPercent] = useState(0);
   const [imageURL, setImageURL] = useState("");
@@ -63,7 +63,7 @@ function Uploader({ setDidImageUpload, collectionName, setIsImageDeleted }) {
       (err) => console.error(err),
       () => {
         getDownloadURL(uploadImage.snapshot.ref).then((url) => {
-          setIsImageDeleted(false);
+          setIsImageDeleted(!isImageDeleted);
           setImageURL(url);
           //   need this line to be false to wait for imageURL state to update
           if (!imageURL) {
