@@ -7,7 +7,6 @@ import DeletePhoto from "./DeletePhoto";
 
 function Landing() {
   const [landingImage, setLandingImage] = useState([]);
-  const [isLandingImageLoaded, setIsLandingImageLoaded] = useState(false);
   const [didImageUpload, setDidImageUpload] = useState(false);
   const [isImageDeleted, setIsImageDeleted] = useState(false);
 
@@ -28,44 +27,29 @@ function Landing() {
 
   useEffect(() => {
     fetchLandingImage();
-  }, []);
+  }, [didImageUpload, isImageDeleted]);
 
-  if (didImageUpload) {
-    fetchLandingImage();
-  }
-
-  if (!landingImage) {
-    setIsLandingImageLoaded(true);
-  }
-
-  if (isImageDeleted) {
-    setIsLandingImageLoaded(false);
-  }
 
   return (
     <div className="landing-container">
       <h1 className="landing-header">
         Welcome to Zero Gravity Aerial Photography
       </h1>
-      {landingImage.map((img) => (
-        <div key={img.id}>
+      {landingImage.map((image) => (
+        <div key={image.id}>
           <DeletePhoto
             collectionName="landingImage"
-            photoId={img.id}
-            photoName={img.name}
+            photoId={image.id}
+            photoName={image.name}
             setIsImageDeleted={setIsImageDeleted}
           />
-          {!isLandingImageLoaded ? (
-            <img src={img.source} alt={img.alt} className="landing-image" />
-          ) : (
-            <img src="" alt="" />
-          )}
+          <img src={image.source} alt={image.alt} className="landing-image" />
         </div>
       ))}
-
       <Uploader
         setDidImageUpload={setDidImageUpload}
         collectionName="landingImage"
+        setIsImageDeleted={setIsImageDeleted}
       />
     </div>
   );

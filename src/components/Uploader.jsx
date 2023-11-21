@@ -3,7 +3,7 @@ import { storage, db } from "../config";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 
-function Uploader({ setDidImageUpload, collectionName }) {
+function Uploader({ setDidImageUpload, collectionName, setIsImageDeleted }) {
   const [imageFile, setImageFile] = useState("");
   const [percent, setPercent] = useState(0);
   const [imageURL, setImageURL] = useState("");
@@ -63,6 +63,7 @@ function Uploader({ setDidImageUpload, collectionName }) {
       (err) => console.error(err),
       () => {
         getDownloadURL(uploadImage.snapshot.ref).then((url) => {
+          setIsImageDeleted(false);
           setImageURL(url);
           //   need this line to be false to wait for imageURL state to update
           if (!imageURL) {
@@ -73,7 +74,7 @@ function Uploader({ setDidImageUpload, collectionName }) {
     );
   };
 
-  if (isImageURLEmpty == false) {
+  if (isImageURLEmpty === false) {
     setIsImageURLEmpty(true);
     addImageToDatabase();
     setDidImageUpload(true);
