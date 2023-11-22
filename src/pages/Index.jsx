@@ -9,6 +9,8 @@ import Rating from "../components/Rating";
 function Index() {
   const [carouselData, setCarouselData] = useState([]);
   const [isEditCarouselActive, setIsEditCarouselActive] = useState(false);
+  const [didImageUpload, setDidImageUpload] = useState(false);
+  const [isImageDeleted, setIsImageDeleted] = useState(false);
 
   const fetchCarouselData = async () => {
     const carouselDataQuery = query(collection(db, "carouselImages"));
@@ -26,7 +28,7 @@ function Index() {
 
   useEffect(() => {
     fetchCarouselData();
-  }, [carouselData]);
+  }, [carouselData, didImageUpload, isImageDeleted]);
 
   return (
     <>
@@ -42,6 +44,9 @@ function Index() {
           carouselData={carouselData}
           isEditCarouselActive={isEditCarouselActive}
           setIsEditCarouselActive={setIsEditCarouselActive}
+          setDidImageUpload={setDidImageUpload}
+          isImageDeleted={isImageDeleted}
+          setIsImageDeleted={setIsImageDeleted}
         />
       )}
 

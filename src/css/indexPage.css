@@ -14,7 +14,7 @@
 .carousel-header {
   text-align: center;
   margin: .75em auto;
-font-size: 1.85em;
+  font-size: 1.85em;
 }
 
 .slide {
@@ -33,6 +33,43 @@ font-size: 1.85em;
   margin: .5em auto;
   max-height: 200px;
   overflow-y: scroll;
+}
+
+.carousel-activate-edit {
+  background-color: aqua;
+  border-radius: 10px;
+  width: 30%;
+  max-width: 150px;
+  text-align: center;
+}
+
+.carousel-activate-edit:hover {
+  cursor: pointer;
+  background-color: rgb(0, 164, 164);
+}
+
+.carousel-edit-button {
+  margin-bottom: 1em;
+  background: orange;
+  border-radius: 10px;
+  color: white;
+  width: 25%;
+  max-width: 150px;
+  text-align: center;
+}
+
+.carousel-edit-button:hover {
+  cursor: pointer;
+  background: rgb(167, 109, 0);
+}
+
+.carousel-textarea {
+  margin: 0;
+}
+
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
 }
 
 .arrow-container {
@@ -64,10 +101,11 @@ font-size: 1.85em;
   }
 
   .carousel-text {
+    max-height: none;
     margin: 0;
     overflow: hidden;
   }
-  
+
   .carousel-image {
     margin-bottom: 1em;
   }
@@ -92,6 +130,7 @@ font-size: 1.85em;
     gap: 3em;
     grid-template-columns: 1fr 1fr;
   }
+
   .carousel-image {
     margin-bottom: 1.5em;
   }

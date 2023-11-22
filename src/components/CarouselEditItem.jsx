@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import { db } from "../config";
+import { db, storage } from "../config";
+import { ref, deleteObject } from "firebase/storage";
 import { deleteDoc, updateDoc, doc } from "firebase/firestore";
 
 function CarouselEditItem({ alt, desc, id, source }) {
   const [textDesc, setTextDesc] = useState(desc);
 
-  const handleSubmit = () => {
-    console.log("submit");
+  const handleDeleteSlide = async (id) => {
+    //gets refs to storage and database for deletion simultaniously
+    const itemToDelete = doc(db, "carouselImages", id);
+    const photoToDelete = ref(storage, `galleryImages/${photoName}`);
+    try {
+      await deleteDoc(itemToDelete);
+      await deleteObject(photoToDelete);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleTextChange = (e) => {
@@ -14,7 +23,7 @@ function CarouselEditItem({ alt, desc, id, source }) {
   };
 
   const handleUpdateItem = async (id) => {
-    const itemDoc = doc(db, "caourselImages", id);
+    const itemDoc = doc(db, "carouselImages", id);
     try {
       await updateDoc(itemDoc, {
         desc: textDesc,
@@ -33,11 +42,22 @@ function CarouselEditItem({ alt, desc, id, source }) {
         name=""
         id=""
         cols="30"
-        rows="10"
+        rows="5"
         value={textDesc}
         onChange={handleTextChange}
+        className="carousel-textarea"
       ></textarea>
-      <button onClick={handleUpdateItem}>Submit</button>
+      <div className="flex-space-between">
+        <button
+          onClick={() => handleUpdateItem(id)}
+          className="carousel-edit-button"
+        >
+          Submit
+        </button>
+        <button onClick={() => handleDeleteSlide(id)} className="delete-photos">
+          DELETE ITEM
+        </button>
+      </div>
     </div>
   );
 }

@@ -3,12 +3,18 @@ import { storage, db } from "../config";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 
-function Uploader({ setDidImageUpload, collectionName, setIsImageDeleted, isImageDeleted }) {
+function Uploader({
+  setDidImageUpload,
+  collectionName,
+  setIsImageDeleted,
+  isImageDeleted,
+}) {
   const [imageFile, setImageFile] = useState("");
   const [percent, setPercent] = useState(0);
   const [imageURL, setImageURL] = useState("");
   const [imageAlt, setImageAlt] = useState("");
   const [isImageURLEmpty, setIsImageURLEmpty] = useState(true);
+  const [textareaDesc, setTextareaDesc] = useState("");
   const imageInputRef = useRef(null);
 
   const handleImageInputReset = () => {
@@ -22,11 +28,20 @@ function Uploader({ setDidImageUpload, collectionName, setIsImageDeleted, isImag
   const addImageToDatabase = async () => {
     if (!imageAlt || !imageURL) return;
     try {
-      await addDoc(collection(db, collectionName), {
-        alt: imageAlt,
-        source: imageURL,
-        name: imageFile.name,
-      });
+      if (collectionName === "galleryImages") {
+        await addDoc(collection(db, collectionName), {
+          alt: imageAlt,
+          source: imageURL,
+          name: imageFile.name,
+          desc: slideDesc,
+        });
+      } else {
+        await addDoc(collection(db, collectionName), {
+          alt: imageAlt,
+          source: imageURL,
+          name: imageFile.name,
+        });
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -63,6 +78,7 @@ function Uploader({ setDidImageUpload, collectionName, setIsImageDeleted, isImag
       (err) => console.error(err),
       () => {
         getDownloadURL(uploadImage.snapshot.ref).then((url) => {
+          //this line is for the use case on the landing component
           setIsImageDeleted(!isImageDeleted);
           setImageURL(url);
           //   need this line to be false to wait for imageURL state to update
@@ -83,6 +99,10 @@ function Uploader({ setDidImageUpload, collectionName, setIsImageDeleted, isImag
   const handleImageAltChange = (event) => {
     setImageAlt(event.target.value);
   };
+
+  const handleTextareaChange = (e) => {
+    setTextareaDesc(e.target.value);
+  };
   return (
     <div>
       <input
@@ -102,6 +122,14 @@ function Uploader({ setDidImageUpload, collectionName, setIsImageDeleted, isImag
         onChange={handleImageAltChange}
         value={imageAlt}
       />
+      {collectionName === "galleryImages" ? (
+        <textarea
+          value={textareaDesc}
+          onChange={handleTextareaChange}
+        ></textarea>
+      ) : (
+        ""
+      )}
       <input type="submit" onClick={handleUpload} />
     </div>
   );

@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { db } from "../config";
-import { collection, getDocs, query } from "firebase/firestore";
+import React, { useState } from "react";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "../css/indexPage.css";
@@ -27,7 +25,7 @@ function Carousel({ carouselData, setIsEditCarouselActive }) {
   return (
     <main>
       <h2 className="carousel-header">About Me</h2>
-      <button className="edit-carousel-button" onClick={handleCarouselEdit}>Edit</button>
+      <button className="carousel-activate-edit" onClick={handleCarouselEdit}>Edit</button>
         {carouselData.map((data, idx) => (
           <div
             key={data.id}
