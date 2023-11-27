@@ -33,7 +33,7 @@ function Uploader({
           alt: imageAlt,
           source: imageURL,
           name: imageFile.name,
-          desc: slideDesc,
+          desc: textareaDesc,
         });
       } else {
         await addDoc(collection(db, collectionName), {
@@ -121,11 +121,13 @@ function Uploader({
         name="name"
         onChange={handleImageAltChange}
         value={imageAlt}
+        placeholder="Image Name"
       />
-      {collectionName === "galleryImages" ? (
+      {collectionName === "carouselImages" ? (
         <textarea
           value={textareaDesc}
           onChange={handleTextareaChange}
+          placeholder="Description"
         ></textarea>
       ) : (
         ""
