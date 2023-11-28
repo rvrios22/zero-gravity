@@ -18,6 +18,7 @@ function CursorTrailer() {
   }, []);
   return (
     <img
+    className="cursor-trailer"
       src="./favicon.ico"
       style={{
         position: "fixed",

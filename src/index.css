@@ -128,3 +128,18 @@ a:hover {
 .delete-photos:hover {
   cursor: pointer;
 }
+
+.cursor-trailer {
+  width: 30px;
+  transform: rotate(-33deg);
+  animation: hover 2.5s linear infinite;
+}
+
+@keyframes hover {
+  25%, 75% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform:rotate(33deg);
+  }
+}
