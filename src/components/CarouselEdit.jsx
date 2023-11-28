@@ -24,6 +24,10 @@ function CarouselEdit({
           desc={data.desc}
           id={data.id}
           source={data.source}
+          photoName={data.name}
+          setDidImageUpload={setDidImageUpload}
+          isImageDeleted={isImageDeleted}
+          setIsImageDeleted={setIsImageDeleted}
         />
       ))}
       <Uploader

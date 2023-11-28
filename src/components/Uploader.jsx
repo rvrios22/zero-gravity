@@ -28,7 +28,7 @@ function Uploader({
   const addImageToDatabase = async () => {
     if (!imageAlt || !imageURL) return;
     try {
-      if (collectionName === "galleryImages") {
+      if (collectionName === "carouselImages") {
         await addDoc(collection(db, collectionName), {
           alt: imageAlt,
           source: imageURL,
@@ -51,6 +51,7 @@ function Uploader({
       setPercent(0);
       setImageURL("");
       setImageAlt("");
+      setTextareaDesc("");
     }
   };
 
@@ -127,6 +128,7 @@ function Uploader({
         <textarea
           value={textareaDesc}
           onChange={handleTextareaChange}
+          id="textarea-desc"
           placeholder="Description"
         ></textarea>
       ) : (

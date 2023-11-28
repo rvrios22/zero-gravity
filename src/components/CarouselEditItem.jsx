@@ -2,17 +2,41 @@ import React, { useState } from "react";
 import { db, storage } from "../config";
 import { ref, deleteObject } from "firebase/storage";
 import { deleteDoc, updateDoc, doc } from "firebase/firestore";
+import ClearIcon from "@mui/icons-material/Clear";
+import Uploader from "./Uploader";
 
-function CarouselEditItem({ alt, desc, id, source }) {
+function CarouselEditItem({
+  alt,
+  desc,
+  id,
+  source,
+  photoName,
+  setDidImageUpload,
+  isImageDeleted,
+  setIsImageDeleted,
+}) {
   const [textDesc, setTextDesc] = useState(desc);
 
   const handleDeleteSlide = async (id) => {
     //gets refs to storage and database for deletion simultaniously
     const itemToDelete = doc(db, "carouselImages", id);
-    const photoToDelete = ref(storage, `galleryImages/${photoName}`);
+    const photoToDelete = ref(storage, `carouselImages/${photoName}`);
     try {
       await deleteDoc(itemToDelete);
       await deleteObject(photoToDelete);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDeletePhotoFromSlide = async (id) => {
+    const itemDoc = doc(db, "carouselImages", id);
+    const photoToDelete = ref(storage, `carouselImages/${photoName}`);
+    try {
+      await deleteObject(photoToDelete);
+      await updateDoc(itemDoc, {
+        source: "",
+      });
     } catch (err) {
       console.error(err);
     }
@@ -37,7 +61,25 @@ function CarouselEditItem({ alt, desc, id, source }) {
 
   return (
     <div>
-      <img src={source} alt={alt} />
+      {source ? (
+        <div className="edit-photo-container">
+          <button
+            onClick={handleDeletePhotoFromSlide}
+            className="edit-delete-photo"
+          >
+            <ClearIcon />
+          </button>
+          <img src={source} alt={alt} />
+        </div>
+      ) : (
+        <Uploader
+          collectionName="carouselImages"
+          setDidImageUpload={setDidImageUpload}
+          isImageDeleted={isImageDeleted}
+          setIsImageDeleted={setIsImageDeleted}
+        />
+      )}
+
       <textarea
         name=""
         id=""
