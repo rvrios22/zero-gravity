@@ -3,7 +3,7 @@ import { db, storage } from "../config";
 import { ref, deleteObject } from "firebase/storage";
 import { deleteDoc, updateDoc, doc } from "firebase/firestore";
 import ClearIcon from "@mui/icons-material/Clear";
-import Uploader from "./Uploader";
+import CarouselImageUploader from "./CarouselImageUploader";
 
 function CarouselEditItem({
   alt,
@@ -36,6 +36,8 @@ function CarouselEditItem({
       await deleteObject(photoToDelete);
       await updateDoc(itemDoc, {
         source: "",
+        alt: "",
+        name: "",
       });
     } catch (err) {
       console.error(err);
@@ -64,7 +66,7 @@ function CarouselEditItem({
       {source ? (
         <div className="edit-photo-container">
           <button
-            onClick={handleDeletePhotoFromSlide}
+            onClick={() => handleDeletePhotoFromSlide(id)}
             className="edit-delete-photo"
           >
             <ClearIcon />
@@ -72,11 +74,12 @@ function CarouselEditItem({
           <img src={source} alt={alt} />
         </div>
       ) : (
-        <Uploader
+        <CarouselImageUploader
           collectionName="carouselImages"
           setDidImageUpload={setDidImageUpload}
           isImageDeleted={isImageDeleted}
           setIsImageDeleted={setIsImageDeleted}
+          id={id}
         />
       )}
 

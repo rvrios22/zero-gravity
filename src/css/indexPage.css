@@ -50,6 +50,8 @@
 
 .edit-photo-container {
   position: relative;
+  width: 50%;
+  margin: 1em auto 0;
 }
 
 .edit-delete-photo {

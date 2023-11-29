@@ -20,35 +20,31 @@ function Carousel({ carouselData, setIsEditCarouselActive }) {
 
   const handleCarouselEdit = () => {
     setIsEditCarouselActive(true);
-  }
+  };
 
   return (
     <main>
       <h2 className="carousel-header">About Me</h2>
-      <button className="carousel-activate-edit" onClick={handleCarouselEdit}>Edit</button>
-        {carouselData.map((data, idx) => (
-          <div
-            key={data.id}
-            className={idx === currentSlide ? "slide active" : "slide"}
-          >
-            {idx === currentSlide && (
-              <img
-                className="carousel-image"
-                src={data.source}
-                alt={data.alt}
-              />
-            )}
-            {idx === currentSlide && (
-              <p className="carousel-text">{data.desc}</p>
-            )}
-          </div>
-        ))}
+      <button className="carousel-activate-edit" onClick={handleCarouselEdit}>
+        Edit
+      </button>
+      {carouselData.map((data, idx) => (
+        <div
+          key={data.id}
+          className={idx === currentSlide ? "slide active" : "slide"}
+        >
+          {idx === currentSlide && (
+            <img className="carousel-image" src={data.source} alt={data.alt} />
+          )}
+          {idx === currentSlide && <p className="carousel-text">{data.desc}</p>}
+        </div>
+      ))}
       <div className="arrow-container">
         <button onClick={prevSlide}>
-          <KeyboardArrowLeftIcon />
+          <KeyboardArrowLeftIcon sx={{ color: "white" }} />
         </button>
         <button onClick={nextSlide}>
-          <KeyboardArrowRightIcon />
+          <KeyboardArrowRightIcon sx={{ color: "white" }} />
         </button>
       </div>
     </main>
