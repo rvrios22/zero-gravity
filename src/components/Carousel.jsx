@@ -41,10 +41,10 @@ function Carousel({ carouselData, setIsEditCarouselActive }) {
       ))}
       <div className="arrow-container">
         <button onClick={prevSlide}>
-          <KeyboardArrowLeftIcon sx={{ color: "white" }} />
+          <KeyboardArrowLeftIcon />
         </button>
         <button onClick={nextSlide}>
-          <KeyboardArrowRightIcon sx={{ color: "white" }} />
+          <KeyboardArrowRightIcon />
         </button>
       </div>
     </main>

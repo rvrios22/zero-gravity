@@ -69,7 +69,7 @@ function CarouselEditItem({
             onClick={() => handleDeletePhotoFromSlide(id)}
             className="edit-delete-photo"
           >
-            <ClearIcon />
+            <ClearIcon sx={{ color: "white" }} />
           </button>
           <img src={source} alt={alt} />
         </div>
