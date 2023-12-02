@@ -8,6 +8,7 @@ import SingleGalleryImage from "../components/SingleGalleryImage";
 function Gallery() {
   const [galleryData, setGalleryData] = useState([]);
   const [onClickImageId, setOnClickImageId] = useState("");
+  const [imageToDisplay, setImageToDisplay] = useState({ });
   const [didImageUpload, setDidImageUpload] = useState(false);
   const [isImageDeleted, setIsImageDeleted] = useState(false);
 
@@ -26,10 +27,24 @@ function Gallery() {
     }
   };
 
-  const getIdOnClick = (data) => {
-    console.log(typeof data.id);
-    setOnClickImageId(data.id);
+  const findImageById = () => {
+    const image = galleryData.find((item) => item.id === onClickImageId);
+    console.log(image)
+    setImageToDisplay({
+      image
+    })
   };
+
+  const getIdOnClick = (data) => {
+    setOnClickImageId(data.id);
+    const image = galleryData.find((item) => item.id === onClickImageId);
+    setImageToDisplay({
+      source: image.source,
+      alt: image.alt
+    })
+  };
+
+  console.log(imageToDisplay)
 
   useEffect(() => {
     fetchGalleryData();
@@ -52,6 +67,7 @@ function Gallery() {
       <SingleGalleryImage
         galleryData={galleryData}
         onClickImageId={onClickImageId}
+        image={imageToDisplay}
       />
     </div>
   );

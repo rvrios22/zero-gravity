@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 
-function SingleGalleryImage({ galleryData, onClickImageId }) {
-  const [imageToDisplay, setImageToDisplay] = useState({ source: "", alt: "" });
+function SingleGalleryImage({ image }) {
 
-  const findImageById = () => {
-    console.log(galleryData.find((item) => item.id === onClickImageId))
-  }
-  return <img src="" alt="" />;
+  return <img src={image.source} alt={image.alt} />;
 }
 
 export default SingleGalleryImage;
