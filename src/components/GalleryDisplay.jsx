@@ -11,7 +11,7 @@ function GalleryDisplay({
   galleryData,
   setIsImageDeleted,
   isImageDeleted,
-  getIdOnClick,
+  getImageToDisplayOnClick,
 }) {
   return (
     <main>
@@ -25,7 +25,7 @@ function GalleryDisplay({
               setIsImageDeleted={setIsImageDeleted}
               isImageDeleted={isImageDeleted}
             />
-            <button onClick={() => getIdOnClick(data)}>
+            <button onClick={() => getImageToDisplayOnClick(data)}>
               <LazyLoadImage
                 alt={data.alt}
                 src={data.source}

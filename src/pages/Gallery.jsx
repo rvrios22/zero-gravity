@@ -7,8 +7,7 @@ import SingleGalleryImage from "../components/SingleGalleryImage";
 
 function Gallery() {
   const [galleryData, setGalleryData] = useState([]);
-  const [onClickImageId, setOnClickImageId] = useState("");
-  const [imageToDisplay, setImageToDisplay] = useState({ });
+  const [imageToDisplay, setImageToDisplay] = useState({});
   const [didImageUpload, setDidImageUpload] = useState(false);
   const [isImageDeleted, setIsImageDeleted] = useState(false);
 
@@ -27,28 +26,18 @@ function Gallery() {
     }
   };
 
-  const findImageById = () => {
-    const image = galleryData.find((item) => item.id === onClickImageId);
-    console.log(image)
-    setImageToDisplay({
-      image
-    })
-  };
-
-  const getIdOnClick = (data) => {
-    setOnClickImageId(data.id);
-    const image = galleryData.find((item) => item.id === onClickImageId);
+  const getImageToDisplayOnClick = (data) => {
+    const image = galleryData.find(({ id }) => id === data.id);
     setImageToDisplay({
       source: image.source,
-      alt: image.alt
-    })
+      alt: image.alt,
+    });
   };
-
-  console.log(imageToDisplay)
 
   useEffect(() => {
     fetchGalleryData();
   }, [didImageUpload, isImageDeleted]);
+
   return (
     <div>
       <h1 className="gallery-header">Gallery</h1>
@@ -62,13 +51,17 @@ function Gallery() {
         galleryData={galleryData}
         setIsImageDeleted={setIsImageDeleted}
         isImageDeleted={isImageDeleted}
-        getIdOnClick={getIdOnClick}
+        getImageToDisplayOnClick={getImageToDisplayOnClick}
       />
-      <SingleGalleryImage
-        galleryData={galleryData}
-        onClickImageId={onClickImageId}
-        image={imageToDisplay}
-      />
+      {imageToDisplay ? (
+        <SingleGalleryImage
+          galleryData={galleryData}
+          image={imageToDisplay}
+          setImage={setImageToDisplay}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

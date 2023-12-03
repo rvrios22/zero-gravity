@@ -25,6 +25,16 @@
     margin-bottom: 1em;
 }
 
+.single-gallery-image-container {
+    position: relative;
+}
+
+.close-single-gallery {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 @media (min-width: 500px) {
     .gallery-grid-container {
         display: grid;
