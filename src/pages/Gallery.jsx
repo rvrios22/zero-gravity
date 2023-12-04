@@ -28,15 +28,20 @@ function Gallery() {
 
   const getImageToDisplayOnClick = (data) => {
     const image = galleryData.find(({ id }) => id === data.id);
+    const idx = galleryData.findIndex((element) => element === image);
     setImageToDisplay({
       source: image.source,
       alt: image.alt,
+      id: image.id,
+      idx: idx
     });
   };
 
   useEffect(() => {
     fetchGalleryData();
   }, [didImageUpload, isImageDeleted]);
+
+  console.log(galleryData)
 
   return (
     <div>
@@ -53,7 +58,7 @@ function Gallery() {
         isImageDeleted={isImageDeleted}
         getImageToDisplayOnClick={getImageToDisplayOnClick}
       />
-      {imageToDisplay ? (
+      {Object.keys(imageToDisplay).length ? (
         <SingleGalleryImage
           galleryData={galleryData}
           image={imageToDisplay}
