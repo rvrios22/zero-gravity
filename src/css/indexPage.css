@@ -110,16 +110,20 @@
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 1.5em;
+    margin-bottom: 1em;
+  }
+
+  .carousel-image {
+    height: 40vh;
+    width: 100%;
+    margin: 0 auto;
+    object-fit: cover;
   }
 
   .carousel-text {
     max-height: none;
     margin: 0;
     overflow: hidden;
-  }
-
-  .carousel-image {
-    margin-bottom: 1em;
   }
 }
 
@@ -140,11 +144,11 @@
 @media (min-width: 1200px) {
   .slide.active {
     gap: 3em;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
   }
 
   .carousel-image {
-    margin-bottom: 1.5em;
+    height: 50vh;
   }
 
   .carousel-text {

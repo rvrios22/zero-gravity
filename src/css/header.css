@@ -9,6 +9,7 @@
     border-bottom: 1px solid black;
     padding-top: 6px;
     font-size: clamp(16px, 1.5vw, 20px);
+    z-index: 1;
   }
 
   .mobile-nav-icon {
@@ -26,7 +27,7 @@
     justify-content: space-around;
     align-items: center;
     position: absolute;
-    top: -250px;
+    top: -500px;
     transition: top 250ms linear;
   }
 

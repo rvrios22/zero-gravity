@@ -41,10 +41,10 @@ function Carousel({ carouselData, setIsEditCarouselActive }) {
       ))}
       <div className="arrow-container">
         <button onClick={prevSlide}>
-          <KeyboardArrowLeftIcon />
+          <KeyboardArrowLeftIcon sx={{ fontSize: '1.75em'}}/>
         </button>
         <button onClick={nextSlide}>
-          <KeyboardArrowRightIcon />
+          <KeyboardArrowRightIcon sx={{ fontSize: '1.75em'}}/>
         </button>
       </div>
     </main>

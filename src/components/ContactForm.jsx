@@ -35,7 +35,6 @@ function ContactForm() {
       )
       .then(
         (res) => {
-          console.log(res.text);
           toastSuccess.fire({
             icon: "success",
             title: "Thanks for your message!",
@@ -48,7 +47,7 @@ function ContactForm() {
           setUserMessage("");
         },
         (error) => {
-          console.log(error.text);
+          console.error(error.text);
           toastError.fire({
             icon: "error",
             title: "Oops...",

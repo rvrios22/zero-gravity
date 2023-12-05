@@ -33,15 +33,13 @@ function Gallery() {
       source: image.source,
       alt: image.alt,
       id: image.id,
-      idx: idx
+      idx: idx,
     });
   };
 
   useEffect(() => {
     fetchGalleryData();
   }, [didImageUpload, isImageDeleted]);
-
-  console.log(galleryData)
 
   return (
     <div>
