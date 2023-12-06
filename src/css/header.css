@@ -38,7 +38,24 @@
 
   .navbar-container {
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
-    justify-content: flex-end;
-    gap: 1em;
+    justify-content: space-between;
+  }
+
+  .navbar-links-container a {
+    padding-left: 1em;
+  }
+
+  .greeter {
+    margin: 0;
+    font-style: italic;
+    font-family: cursive;
+  }
+
+  .signout {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px 20px;
+    display: inline-block;
   }

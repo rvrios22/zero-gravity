@@ -3,7 +3,7 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "../css/indexPage.css";
 
-function Carousel({ carouselData, setIsEditCarouselActive }) {
+function Carousel({ carouselData, setIsEditCarouselActive, userIsLoggedIn }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
@@ -25,9 +25,11 @@ function Carousel({ carouselData, setIsEditCarouselActive }) {
   return (
     <main>
       <h2 className="carousel-header">About Me</h2>
-      <button className="carousel-activate-edit" onClick={handleCarouselEdit}>
-        Edit
-      </button>
+      {userIsLoggedIn && (
+        <button className="carousel-activate-edit" onClick={handleCarouselEdit}>
+          Edit
+        </button>
+      )}
       {carouselData.map((data, idx) => (
         <div
           key={data.id}
@@ -41,10 +43,10 @@ function Carousel({ carouselData, setIsEditCarouselActive }) {
       ))}
       <div className="arrow-container">
         <button onClick={prevSlide}>
-          <KeyboardArrowLeftIcon sx={{ fontSize: '1.75em'}}/>
+          <KeyboardArrowLeftIcon sx={{ fontSize: "1.75em" }} />
         </button>
         <button onClick={nextSlide}>
-          <KeyboardArrowRightIcon sx={{ fontSize: '1.75em'}}/>
+          <KeyboardArrowRightIcon sx={{ fontSize: "1.75em" }} />
         </button>
       </div>
     </main>

@@ -5,7 +5,7 @@ import Uploader from "./Uploader";
 import "../css/indexPage.css";
 import DeletePhoto from "./DeletePhoto";
 
-function Landing() {
+function Landing({ userIsLoggedIn }) {
   const [landingImage, setLandingImage] = useState([]);
   const [didImageUpload, setDidImageUpload] = useState(false);
   const [isImageDeleted, setIsImageDeleted] = useState(false);
@@ -36,22 +36,27 @@ function Landing() {
       </h1>
       {landingImage.map((image) => (
         <div key={image.id}>
-          <DeletePhoto
-            collectionName="landingImage"
-            photoId={image.id}
-            photoName={image.name}
-            isImageDeleted={isImageDeleted}
-            setIsImageDeleted={setIsImageDeleted}
-          />
+          {userIsLoggedIn && (
+            <DeletePhoto
+              collectionName="landingImage"
+              photoId={image.id}
+              photoName={image.name}
+              isImageDeleted={isImageDeleted}
+              setIsImageDeleted={setIsImageDeleted}
+            />
+          )}
+
           <img src={image.source} alt={image.alt} className="landing-image" />
         </div>
       ))}
-      <Uploader
-        setDidImageUpload={setDidImageUpload}
-        isImageDeleted={isImageDeleted}
-        collectionName="landingImage"
-        setIsImageDeleted={setIsImageDeleted}
-      />
+      {userIsLoggedIn && (
+        <Uploader
+          setDidImageUpload={setDidImageUpload}
+          isImageDeleted={isImageDeleted}
+          collectionName="landingImage"
+          setIsImageDeleted={setIsImageDeleted}
+        />
+      )}
     </div>
   );
 }

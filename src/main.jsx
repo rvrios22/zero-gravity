@@ -7,6 +7,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Index from "./pages";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
+      {
+        path: "/login",
+        element: <Login />
+      }
     ],
   },
 ]);

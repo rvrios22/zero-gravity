@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../config";
+import { db, auth } from "../config";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 import GalleryDisplay from "../components/GalleryDisplay";
 import Uploader from "../components/Uploader";
 import SingleGalleryImage from "../components/SingleGalleryImage";
@@ -10,6 +11,13 @@ function Gallery() {
   const [imageToDisplay, setImageToDisplay] = useState({});
   const [didImageUpload, setDidImageUpload] = useState(false);
   const [isImageDeleted, setIsImageDeleted] = useState(false);
+  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setUserIsLoggedIn(true);
+    }
+  });
 
   const fetchGalleryData = async () => {
     const galleryDataRef = collection(db, "galleryImages");
@@ -44,17 +52,21 @@ function Gallery() {
   return (
     <div>
       <h1 className="gallery-header">Gallery</h1>
-      <Uploader
-        setDidImageUpload={setDidImageUpload}
-        collectionName="galleryImages"
-        isImageDeleted={isImageDeleted}
-        setIsImageDeleted={setIsImageDeleted}
-      />
+      {userIsLoggedIn && (
+        <Uploader
+          setDidImageUpload={setDidImageUpload}
+          collectionName="galleryImages"
+          isImageDeleted={isImageDeleted}
+          setIsImageDeleted={setIsImageDeleted}
+        />
+      )}
+
       <GalleryDisplay
         galleryData={galleryData}
         setIsImageDeleted={setIsImageDeleted}
         isImageDeleted={isImageDeleted}
         getImageToDisplayOnClick={getImageToDisplayOnClick}
+        userIsLoggedIn={userIsLoggedIn}
       />
       {Object.keys(imageToDisplay).length ? (
         <SingleGalleryImage

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../config";
+import { db, auth } from "../config";
 import { collection, getDocs, query } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 import Landing from "../components/Landing";
 import Carousel from "../components/Carousel";
 import CarouselEdit from "../components/CarouselEdit";
@@ -11,6 +12,13 @@ function Index() {
   const [isEditCarouselActive, setIsEditCarouselActive] = useState(false);
   const [didImageUpload, setDidImageUpload] = useState(false);
   const [isImageDeleted, setIsImageDeleted] = useState(false);
+  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setUserIsLoggedIn(true);
+    }
+  });
 
   const fetchCarouselData = async () => {
     const carouselDataQuery = query(collection(db, "carouselImages"));
@@ -32,12 +40,13 @@ function Index() {
 
   return (
     <>
-      <Landing />
+      <Landing userIsLoggedIn={userIsLoggedIn} />
       {!isEditCarouselActive ? (
         <Carousel
           carouselData={carouselData}
           isEditCarouselActive={isEditCarouselActive}
           setIsEditCarouselActive={setIsEditCarouselActive}
+          userIsLoggedIn={userIsLoggedIn}
         />
       ) : (
         <CarouselEdit
