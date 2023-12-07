@@ -13,12 +13,6 @@ function Gallery() {
   const [isImageDeleted, setIsImageDeleted] = useState(false);
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setUserIsLoggedIn(true);
-    }
-  });
-
   const fetchGalleryData = async () => {
     const galleryDataRef = collection(db, "galleryImages");
     const galleryDataQuery = query(galleryDataRef, orderBy("alt", "asc"));
@@ -48,6 +42,14 @@ function Gallery() {
   useEffect(() => {
     fetchGalleryData();
   }, [didImageUpload, isImageDeleted]);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUserIsLoggedIn(true);
+      }
+    });
+  }, [userIsLoggedIn]);
 
   return (
     <div>

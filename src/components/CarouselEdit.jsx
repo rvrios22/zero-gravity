@@ -30,6 +30,7 @@ function CarouselEdit({
           setIsImageDeleted={setIsImageDeleted}
         />
       ))}
+      <h2>Upload a New Slide</h2>
       <Uploader
         collectionName="carouselImages"
         setDidImageUpload={setDidImageUpload}

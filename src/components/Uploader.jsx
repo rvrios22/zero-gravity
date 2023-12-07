@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { storage, db } from "../config";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
+import Compressor from "compressorjs";
 
 function Uploader({
   setDidImageUpload,
@@ -55,8 +56,23 @@ function Uploader({
     }
   };
 
-  const handleImageInputChange = (event) => {
-    setImageFile(event.target.files[0]);
+  const handleImageInputChange = (e) => {
+    const imageToBeCompressed = e.target.files[0];
+    if (!imageToBeCompressed) {
+      return;
+    }
+
+    new Compressor(imageToBeCompressed, {
+      quality: 0.2,
+
+      success(image) {
+        console.log("compressed", image);
+        setImageFile(image);
+      },
+      error(err) {
+        console.error(err);
+      },
+    });
   };
 
   const handleUpload = () => {

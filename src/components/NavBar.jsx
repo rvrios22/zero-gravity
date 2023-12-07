@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { auth } from "../config";
@@ -8,17 +8,23 @@ import "../css/header.css";
 function NavBar() {
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setUserIsLoggedIn(true);
-    }
-  });
 
-  const handleSignout = () => {
-    signOut(auth);
-    navigate(0);
+  const handleSignout = async () => {
+    try {
+      signOut(auth);
+      navigate(0);
+    } catch (err) {
+      console.error(err);
+    }
   };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUserIsLoggedIn(true);
+      }
+    });
+  }, [userIsLoggedIn]);
 
   return (
     <div className="navbar-container">

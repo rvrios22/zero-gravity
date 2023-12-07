@@ -14,12 +14,6 @@ function Index() {
   const [isImageDeleted, setIsImageDeleted] = useState(false);
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setUserIsLoggedIn(true);
-    }
-  });
-
   const fetchCarouselData = async () => {
     const carouselDataQuery = query(collection(db, "carouselImages"));
     try {
@@ -37,6 +31,14 @@ function Index() {
   useEffect(() => {
     fetchCarouselData();
   }, [carouselData, didImageUpload, isImageDeleted]);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUserIsLoggedIn(true);
+      }
+    });
+  }, [userIsLoggedIn]);
 
   return (
     <>
