@@ -12,7 +12,7 @@ function GetInTouch() {
         projects, creative ideas, or opportunities to be part of your visions.
       </p>
       <div className="icons-container">
-        <a href="tel:+17602189344" className="icon">
+        <a  className="icon">
           <PhoneIcon sx={{ fontSize: "2em" }} />
         </a>
         <a

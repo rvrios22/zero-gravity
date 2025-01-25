@@ -8,7 +8,7 @@ function Footer() {
         <p>
           zerogravityaerialphotography.com was developed and is maintained by{" "}
           <a
-            href="https://riosdevelopment.tech"
+            href="https://riosdev.com"
             target="_blank"
             rel="noopener noreferrer"
           >

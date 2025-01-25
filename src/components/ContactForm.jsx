@@ -13,7 +13,7 @@ function ContactForm() {
     toast: true,
     position: "center",
     showConfirmButton: false,
-    timer: 2000,
+    timer: 5000,
     timerProgressBar: true,
   });
 
@@ -26,40 +26,48 @@ function ContactForm() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm(
-        import.meta.env.VITE_SERVICE_ID,
-        import.meta.env.VITE_TEMPLATE_ID,
-        form.current,
-        import.meta.env.VITE_PUBLIC_KEY
-      )
-      .then(
-        (res) => {
-          toastSuccess.fire({
-            icon: "success",
-            title: "Thanks for your message!",
-            text: "I'll reach back out to you as soon as possible.",
-            background: "#F5F6F7",
-            color: "black",
-          });
-          setUsername("");
-          setUserEmail("");
-          setUserMessage("");
-        },
-        (error) => {
-          console.error(error.text);
-          toastError.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong, please try again later.",
-            background: "#F5F6F7",
-            color: "black",
-          });
-          setUsername("");
-          setUserEmail("");
-          setUserMessage("");
-        }
-      );
+    toastSuccess.fire({
+      icon: "success",
+      title: "This Is A Demo Site",
+      text: "This site is not live, this email will not send",
+      background: "#F5F6F7",
+      color: "black",
+    });
+
+    // emailjs
+    //   .sendForm(
+    //     import.meta.env.VITE_SERVICE_ID,
+    //     import.meta.env.VITE_TEMPLATE_ID,
+    //     form.current,
+    //     import.meta.env.VITE_PUBLIC_KEY
+    //   )
+    //   .then(
+    //     (res) => {
+    //       toastSuccess.fire({
+    //         icon: "success",
+    //         title: "Thanks for your message!",
+    //         text: "I'll reach back out to you as soon as possible.",
+    //         background: "#F5F6F7",
+    //         color: "black",
+    //       });
+    //       setUsername("");
+    //       setUserEmail("");
+    //       setUserMessage("");
+    //     },
+    //     (error) => {
+    //       console.error(error.text);
+    //       toastError.fire({
+    //         icon: "error",
+    //         title: "Oops...",
+    //         text: "Something went wrong, please try again later.",
+    //         background: "#F5F6F7",
+    //         color: "black",
+    //       });
+    //       setUsername("");
+    //       setUserEmail("");
+    //       setUserMessage("");
+    //     }
+    //   );
   };
 
   return (
