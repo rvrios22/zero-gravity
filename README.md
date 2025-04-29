@@ -1,9 +1,4 @@
-# React + Vite
+A portfolio site for a local drone photography company. The site was build using React on the client and used Firebase as a backend. The site utilized a 3rd party library to compress images before uploading to Firebase to help save on storage costs and keep the project in budge.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# zero-gravity
+IMPORTANT
+The company owner no longer operates the business and the site is no longer available
